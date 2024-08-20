@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs UI</title>
+    <style>
+      .tab-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .tab-buttons {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+      }
+      .tab-button {
+        padding: 10px 20px;
+        background-color: #f1f1f1;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .tab-button:hover {
+        background-color: #ddd;
+      }
+      .tab-button.active {
+        background-color: #fff;
+        border-bottom: 2px solid #4caf50;
+      }
+      .tab-content {
+        display: none;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-button active" data-tab="tab1">Tab 1</button>
+        <button class="tab-button" data-tab="tab2">Tab 2</button>
+        <button class="tab-button" data-tab="tab3">Tab 3</button>
+      </div>
+      <div class="tab-content active" id="tab1">
+        <h2>Tab 1 Content</h2>
+        <p>This is the content for Tab 1.</p>
+      </div>
+      <div class="tab-content" id="tab2">
+        <h2>Tab 2 Content</h2>
+        <p>This is the content for Tab 2.</p>
+      </div>
+      <div class="tab-content" id="tab3">
+        <h2>Tab 3 Content</h2>
+        <p>This is the content for Tab 3.</p>
+      </div>
+    </div>
+
+    <script>
+      const tabButtons = document.querySelectorAll(".tab-button");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const tabId = button.getAttribute("data-tab");
+
+          tabButtons.forEach((btn) => btn.classList.remove("active"));
+          tabContents.forEach((content) => content.classList.remove("active"));
+
+          button.classList.add("active");
+          document.getElementById(tabId).classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
